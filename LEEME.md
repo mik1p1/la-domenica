@@ -15,7 +15,7 @@ Autor: Luis Miguel Pascua Portilla · 2º DAM · Desarrollo de Interfaces
 | Evolución: primera versión | `evolucion/version-1.html` |
 | Evolución: segunda versión | `evolucion/version-2.html` |
 
-Con el servidor local en marcha: http://localhost:8765/entrega/
+
 
 ## Archivos
 
