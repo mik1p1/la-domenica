@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Domenica — Newsletter de cocina italiana</title>
+<meta name="description" content="Newsletter semanal de cocina italiana casera.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="barra">
+  <div class="caja barra__fila">
+    <a class="logo" href="index.html" data-z="1"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#4C9A2A"/><path d="M20 31V15" stroke="#0F1A0A" stroke-width="2.2" stroke-linecap="round"/><path d="M20 19c0 0-6.2-.4-7.9-4.6C10.4 10.2 13 7.6 13 7.6S20 10 20 19Z" fill="#0F1A0A"/><path d="M20 23c0 0 5.8-1.2 7.4-5.4 1.6-4.2-.9-6.6-.9-6.6S20 13.2 20 23Z" fill="#0F1A0A"/></svg><span class="logo__txt">La Domenica</span></a>
+    <button class="hamburguesa" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Navegación principal">
+      <ul class="menu"><li><a href="index.html" aria-current="page">Inicio</a></li><li><a href="recetas.html">Recetas</a></li><li><a href="sobre-nosotros.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+      <a class="btn btn--cta btn--nav" href="index.html#suscribirse" data-z="2">Suscribirse</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero" id="suscribirse">
+  <div class="hero__foto" aria-hidden="true" style="position:relative">
+    <span data-z="3" style="position:absolute;left:10%;bottom:12%;width:1px;height:1px"></span>
+  </div>
+  <div class="hero__col">
+    <div class="hero__col-in">
+      <div>
+        <h1>Únete a nuestra comunidad</h1>
+        <p class="sub">Recibe tips semanales de cocina italiana casera: una receta, un truco y un producto de temporada cada domingo.</p>
+      </div>
+      <ul class="resaltos" aria-label="Condiciones de la newsletter">
+        <li><span class="resaltos__icono"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5 8.3 14.2 15.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><strong>Gratuita</strong><span>Sin pagos ni registro</span></div></li>
+        <li><span class="resaltos__icono"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 8.5h14M7 2.8v3.4M13 2.8v3.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><div><strong>Domingos, 9:00</strong><span>Un correo por semana</span></div></li>
+        <li><span class="resaltos__icono"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 6l8 8M14 6l-8 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span><div><strong>Baja en un clic</strong><span>Desde cualquier correo</span></div></li>
+      </ul>
+      <form class="form" id="form" novalidate>
+        <div class="form__fila">
+          <div>
+            <label class="sr" for="email">Tu correo electrónico</label>
+            <input class="campo" id="email" type="email" placeholder="nombre@correo.com" autocomplete="email" required aria-describedby="legal">
+          </div>
+          <button class="btn btn--cta" type="submit" id="boton" data-z="4">Suscribirse <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+        <p class="legal" id="legal">Solo usamos tu email para enviarte la newsletter. Puedes darte de baja en cualquier momento desde el propio correo.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="pie">
+  <div class="caja">
+    <div class="pie__rejilla">
+      <div>
+        <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#4C9A2A"/><path d="M20 31V15" stroke="#0F1A0A" stroke-width="2.2" stroke-linecap="round"/><path d="M20 19c0 0-6.2-.4-7.9-4.6C10.4 10.2 13 7.6 13 7.6S20 10 20 19Z" fill="#0F1A0A"/><path d="M20 23c0 0 5.8-1.2 7.4-5.4 1.6-4.2-.9-6.6-.9-6.6S20 13.2 20 23Z" fill="#0F1A0A"/></svg><span class="logo__txt">La Domenica</span></a>
+        <p>Newsletter semanal de cocina italiana casera. Un correo cada domingo con una receta, una técnica y un producto de temporada.</p>
+      </div>
+      <nav aria-labelledby="t-nav">
+        <h2 id="t-nav">Páginas</h2>
+        <ul><li><a href="index.html">Inicio</a></li><li><a href="recetas.html">Recetas</a></li><li><a href="sobre-nosotros.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+      </nav>
+      <div>
+        <h2>Contacto</h2>
+        <p><a href="mailto:hola@ladomenica.es">hola@ladomenica.es</a></p>
+        <p>Envío: domingos a las 9:00</p>
+      </div>
+    </div>
+    <div class="pie__base">
+      <p>Diseño y desarrollo: <strong>Luis Miguel Pascua Portilla</strong> · Tarea DI_02 · Desarrollo de Interfaces, 2º DAM</p>
+      <p>Fotografías: Mae Mu, Joana Abreu, Jorge Zapata, Anima Visual, Margaret Jaszowska y otros autores de Unsplash</p>
+    </div>
+  </div>
+</footer>
+<div class="velo" id="velo" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo" id="modal">
+    <button class="modal__x" id="x" aria-label="Cerrar">&times;</button>
+    <div class="modal__icono" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 28 28"><path d="M7 14.5 11.8 19.3 21 9" fill="none" stroke="#2F6B1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h2 id="modal-titulo">Suscripción confirmada</h2>
+    <p>Recibirás el primer número el próximo domingo en <strong id="modal-email">tu correo</strong>.</p>
+    <button class="btn btn--cta" id="ok">Cerrar</button>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

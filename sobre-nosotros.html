@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sobre nosotros — La Domenica</title>
+<meta name="description" content="Qué es La Domenica y qué incluye cada newsletter.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="barra">
+  <div class="caja barra__fila">
+    <a class="logo" href="index.html" data-z="1"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#4C9A2A"/><path d="M20 31V15" stroke="#0F1A0A" stroke-width="2.2" stroke-linecap="round"/><path d="M20 19c0 0-6.2-.4-7.9-4.6C10.4 10.2 13 7.6 13 7.6S20 10 20 19Z" fill="#0F1A0A"/><path d="M20 23c0 0 5.8-1.2 7.4-5.4 1.6-4.2-.9-6.6-.9-6.6S20 13.2 20 23Z" fill="#0F1A0A"/></svg><span class="logo__txt">La Domenica</span></a>
+    <button class="hamburguesa" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Navegación principal">
+      <ul class="menu"><li><a href="index.html">Inicio</a></li><li><a href="recetas.html">Recetas</a></li><li><a href="sobre-nosotros.html" aria-current="page">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+      <a class="btn btn--cta btn--nav" href="index.html#suscribirse" data-z="2">Suscribirse</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="cabecera-pag" style="--foto-cab:url('img/receta.jpg')">
+  <div class="caja">
+    <p class="migas"><a href="index.html">Inicio</a> / Sobre nosotros</p>
+    <h1>Sobre nosotros</h1>
+    <p class="sub">Qué es La Domenica, qué incluye cada newsletter y cómo preparamos las recetas.</p>
+  </div>
+</section>
+<section class="seccion">
+  <div class="caja dos-col">
+    <div class="texto">
+      <span class="etiqueta">El proyecto</span>
+      <h2>Cocina italiana de casa, explicada paso a paso</h2>
+      <p>La Domenica es una newsletter semanal sobre la cocina que se prepara en las casas italianas los fines de semana: pasta fresca, guisos lentos, panes y postres sencillos.</p>
+      <p>Cada receta se cocina antes de publicarse. Indicamos cantidades exactas, tiempos reales y los puntos donde es fácil equivocarse.</p>
+    </div>
+    <img src="img/producto.jpg" alt="Manos amasando pasta junto a un cuenco de huevos y harina" loading="lazy">
+  </div>
+</section>
+<section class="seccion seccion--gris" aria-labelledby="t-incluye">
+  <div class="caja">
+    <div class="cab">
+      <h2 id="t-incluye">Qué incluye cada newsletter</h2>
+      <p>Tres apartados fijos, en un correo que se lee en menos de diez minutos.</p>
+    </div>
+    <ul class="trio">
+      <li><img src="img/receta.jpg" alt="Manos pasando una lámina de masa por la máquina de pasta" loading="lazy">
+        <div class="trio__txt"><span class="etiqueta">Receta</span><h3>Una receta completa</h3>
+        <p>Ingredientes para cuatro personas, tiempos reales y los pasos en orden.</p></div></li>
+      <li><img src="img/truco.jpg" alt="Nidos de tagliatelle fresco recién cortados" loading="lazy">
+        <div class="trio__txt"><span class="etiqueta">Técnica</span><h3>Un truco de cocina</h3>
+        <p>Una técnica concreta explicada en pocas líneas: cocción, emulsión o amasado.</p></div></li>
+      <li><img src="img/producto.jpg" alt="Manos amasando junto a un cuenco de huevos y harina" loading="lazy">
+        <div class="trio__txt"><span class="etiqueta">Temporada</span><h3>Un producto del mes</h3>
+        <p>Qué ingrediente está de temporada, cómo elegirlo y cómo conservarlo.</p></div></li>
+    </ul>
+  </div>
+</section>
+<section class="cierre">
+  <div class="caja cierre__fila">
+    <div><h2>Recibe una receta nueva cada domingo</h2>
+      <p>Una receta, una técnica y un producto de temporada en tu correo.</p></div>
+    <a class="btn btn--cta" href="index.html#suscribirse">Suscribirse <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+</main>
+<footer class="pie">
+  <div class="caja">
+    <div class="pie__rejilla">
+      <div>
+        <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#4C9A2A"/><path d="M20 31V15" stroke="#0F1A0A" stroke-width="2.2" stroke-linecap="round"/><path d="M20 19c0 0-6.2-.4-7.9-4.6C10.4 10.2 13 7.6 13 7.6S20 10 20 19Z" fill="#0F1A0A"/><path d="M20 23c0 0 5.8-1.2 7.4-5.4 1.6-4.2-.9-6.6-.9-6.6S20 13.2 20 23Z" fill="#0F1A0A"/></svg><span class="logo__txt">La Domenica</span></a>
+        <p>Newsletter semanal de cocina italiana casera. Un correo cada domingo con una receta, una técnica y un producto de temporada.</p>
+      </div>
+      <nav aria-labelledby="t-nav">
+        <h2 id="t-nav">Páginas</h2>
+        <ul><li><a href="index.html">Inicio</a></li><li><a href="recetas.html">Recetas</a></li><li><a href="sobre-nosotros.html">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+      </nav>
+      <div>
+        <h2>Contacto</h2>
+        <p><a href="mailto:hola@ladomenica.es">hola@ladomenica.es</a></p>
+        <p>Envío: domingos a las 9:00</p>
+      </div>
+    </div>
+    <div class="pie__base">
+      <p>Diseño y desarrollo: <strong>Luis Miguel Pascua Portilla</strong> · Tarea DI_02 · Desarrollo de Interfaces, 2º DAM</p>
+      <p>Fotografías: Mae Mu, Joana Abreu, Jorge Zapata, Anima Visual, Margaret Jaszowska y otros autores de Unsplash</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

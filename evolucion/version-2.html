@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A · Editorial dividido — La Domenica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noche:#16120F; --crema:#F7F2E8; --crema-2:#EFE8DA;
+  --tinta:#221C18; --gris:#6B6058;
+  --oliva:#3C6E2B; --oliva-h:#2E5620; --alerta:#A3231B;
+  --linea:rgba(34,28,24,.13);
+  --display:"Bodoni Moda",Georgia,serif;
+  --texto:"Work Sans",system-ui,sans-serif;
+  --barra:70px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+img{display:block;max-width:100%}
+button,input{font:inherit;color:inherit}
+
+body{
+  font-family:var(--texto);font-size:16px;line-height:1.6;color:var(--tinta);
+  background:linear-gradient(rgba(12,9,7,.5),rgba(12,9,7,.68)),
+             url("../img/fondo-harina.jpg") center/cover fixed no-repeat, var(--noche);
+  -webkit-font-smoothing:antialiased;
+}
+.caja{width:100%;max-width:1280px;margin-inline:auto;padding-inline:clamp(20px,4vw,52px)}
+
+/* ---------- 1. BARRA ---------- */
+.barra{position:sticky;top:0;z-index:30;height:var(--barra);background:var(--noche);
+  border-bottom:1px solid rgba(247,242,232,.14)}
+.barra__fila{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo__t{font-family:var(--display);font-size:1.32rem;font-weight:700;color:#F7F2E8;line-height:1;letter-spacing:.01em}
+.logo__t i{font-weight:400}
+.menu{display:none}
+@media(min-width:820px){
+  .menu{display:flex;gap:32px;list-style:none;margin:0;padding:0}
+  .menu a{color:rgba(247,242,232,.72);text-decoration:none;font-size:.85rem;font-weight:500;
+    padding:5px 0;border-bottom:1.5px solid transparent;transition:.18s}
+  .menu a:hover,.menu a:focus-visible{color:#F7F2E8;border-bottom-color:var(--oliva)}
+}
+
+/* ---------- 2. HERO ---------- */
+.hero{display:grid;min-height:calc(100svh - var(--barra))}
+@media(min-width:900px){.hero{grid-template-columns:minmax(0,55fr) minmax(0,45fr)}}
+.panel{background:var(--crema);display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px,6vw,76px) clamp(24px,5vw,68px)}
+@media(min-width:900px){.panel{box-shadow:30px 0 70px rgba(10,8,6,.4)}}
+.panel__in{max-width:540px;margin-inline:auto;width:100%}
+
+.sello{display:flex;align-items:center;gap:12px;margin:0 0 26px;
+  font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--oliva)}
+.sello::after{content:"";flex:1;height:1px;background:var(--linea)}
+
+h1{font-family:var(--display);font-weight:900;
+  font-size:clamp(2.5rem,4.6vw,3.7rem);line-height:1.02;letter-spacing:-.018em;margin:0 0 16px}
+h1 i{font-weight:400}
+.sub{font-size:clamp(1rem,1.3vw,1.14rem);color:#45392F;margin:0 0 34px;max-width:36ch}
+
+.form{margin:0}
+.fila{display:grid;gap:12px}
+@media(min-width:560px){.fila{grid-template-columns:1fr auto}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.campo{width:100%;height:56px;padding:0 18px;background:#fff;border:2px solid var(--tinta);
+  border-radius:3px;transition:.16s}
+.campo::placeholder{color:#9A8D82}
+.campo:focus-visible{outline:none;border-color:var(--oliva);box-shadow:0 0 0 4px rgba(60,110,43,.22)}
+.campo[aria-invalid="true"]{border-color:var(--alerta)}
+.cta{height:56px;padding:0 34px;background:var(--oliva);color:#fff;font-weight:600;font-size:1rem;
+  border:none;border-radius:3px;cursor:pointer;white-space:nowrap;transition:.18s}
+.cta:hover:not(:disabled){background:var(--oliva-h);transform:translateY(-2px);box-shadow:0 6px 18px rgba(60,110,43,.34)}
+.cta:active:not(:disabled){transform:none;box-shadow:none}
+.cta:focus-visible{outline:3px solid var(--tinta);outline-offset:3px}
+.cta:disabled{background:#8E8C7F;cursor:progress;transform:none;box-shadow:none}
+
+.aviso{display:flex;align-items:flex-start;gap:7px;font-size:.87rem;margin:10px 0 0;min-height:1.3em}
+.aviso:empty{margin:0}
+.aviso--mal{color:var(--alerta)}
+.aviso--bien{color:var(--oliva)}
+.aviso svg{flex:none;margin-top:3px}
+.legal{font-size:.78rem;color:var(--gris);margin:16px 0 0;max-width:46ch}
+
+.foto{min-height:36vh}
+@media(min-width:900px){.foto{min-height:0}}
+
+/* ---------- 3. QUE RECIBES ---------- */
+.recibes{background:var(--crema-2);padding-block:clamp(56px,7vw,86px);position:relative;z-index:2}
+.cab{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;
+  padding-bottom:18px;margin-bottom:34px;border-bottom:1px solid var(--linea)}
+.recibes h2{font-family:var(--display);font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;margin:0}
+.cab p{margin:0;color:var(--gris);font-size:.9rem}
+.lista{display:grid;gap:28px;list-style:none;margin:0;padding:0}
+@media(min-width:760px){.lista{grid-template-columns:repeat(3,1fr)}}
+.item figure{margin:0 0 15px;overflow:hidden;border-radius:3px}
+.item img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .55s ease}
+.item:hover img{transform:scale(1.04)}
+.item .n{font-family:var(--display);font-size:.84rem;font-weight:700;color:var(--oliva);letter-spacing:.16em}
+.item h3{font-family:var(--display);font-size:1.28rem;font-weight:700;margin:2px 0 6px}
+.item p{margin:0;font-size:.92rem;color:#4C4038}
+
+/* ---------- 4. PIE ---------- */
+.pie{position:relative;z-index:2;background:var(--noche);color:rgba(247,242,232,.58);
+  font-size:.79rem;padding-block:30px 34px}
+.pie__fila{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between}
+.pie p{margin:0}
+.pie b{color:#F7F2E8;font-weight:600}
+
+/* ---------- 5. MODAL ---------- */
+.velo{position:fixed;inset:0;z-index:60;background:rgba(10,8,6,.74);display:grid;place-items:center;padding:20px}
+.velo[hidden]{display:none}
+.modal{background:var(--crema);width:100%;max-width:420px;padding:40px 34px 30px;text-align:center;
+  position:relative;border-radius:3px;animation:e .3s cubic-bezier(.16,.84,.26,1)}
+@keyframes e{from{opacity:0;transform:translateY(16px)}}
+@media(prefers-reduced-motion:reduce){.modal{animation:none}}
+.mx{position:absolute;top:10px;right:12px;width:36px;height:36px;background:none;border:none;
+  font-size:1.6rem;line-height:1;color:var(--gris);cursor:pointer;border-radius:3px}
+.mx:hover{background:var(--crema-2);color:var(--tinta)}
+.mx:focus-visible{outline:3px solid var(--oliva);outline-offset:1px}
+.mi{width:54px;height:54px;border-radius:50%;background:#E2EBDC;display:grid;place-items:center;margin:0 auto 18px}
+.modal h2{font-family:var(--display);font-size:1.7rem;font-weight:700;margin:0 0 10px}
+.modal p{margin:0;color:#4C4038;font-size:.94rem}
+.mok{width:100%;height:50px;margin-top:26px;background:none;border:2px solid var(--tinta);
+  border-radius:3px;font-weight:600;cursor:pointer;transition:.18s}
+.mok:hover{background:var(--tinta);color:var(--crema)}
+.mok:focus-visible{outline:3px solid var(--oliva);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="caja barra__fila">
+    <a class="logo" href="#">
+      <svg width="20" height="24" viewBox="0 0 22 26" aria-hidden="true">
+        <path d="M11 25V11" stroke="#8FBF6E" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M11 14S6 13.6 4.6 10.2C3.2 6.8 5.3 4.6 5.3 4.6S11 6.6 11 14Z" fill="#6FA34E"/>
+        <path d="M11 17s4.7-1 6-4.4c1.3-3.4-.7-5.4-.7-5.4S11 9.2 11 17Z" fill="#4E8135"/>
+      </svg>
+      <span class="logo__t">La <i>Domenica</i></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <ul class="menu">
+        <li><a href="#">Inicio</a></li><li><a href="#recibes">Recetas</a></li>
+        <li><a href="#">Sobre nosotros</a></li><li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="panel"><div class="panel__in">
+    <p class="sello">Newsletter semanal</p>
+    <h1>Únete a nuestra <i>comunidad</i></h1>
+    <p class="sub">Recibe tips semanales de cocina italiana: lo que se hace en casa un domingo, no lo que sale en los restaurantes.</p>
+
+    <form class="form" id="form" novalidate>
+      <div class="fila">
+        <div>
+          <label class="sr" for="email">Tu correo electrónico</label>
+          <input class="campo" id="email" type="email" placeholder="tunombre@correo.com"
+                 autocomplete="email" required aria-describedby="legal">
+        </div>
+        <button class="cta" type="submit" id="boton">Suscribirse</button>
+      </div>
+      <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+      <p class="legal" id="legal">Un email cada domingo. Te das de baja en un clic y no cedemos tus datos a nadie.</p>
+    </form>
+  </div></div>
+  <div class="foto" aria-hidden="true"></div>
+</section>
+
+<section class="recibes" id="recibes">
+  <div class="caja">
+    <div class="cab">
+      <h2>Qué llega cada domingo</h2>
+      <p>Tres cosas, un correo, siete minutos de lectura.</p>
+    </div>
+    <ul class="lista">
+      <li class="item">
+        <figure><img src="../img/receta.jpg" alt="Manos pasando una lámina de masa por la máquina de pasta" loading="lazy"></figure>
+        <span class="n">01</span><h3>La receta</h3>
+        <p>Cantidades para cuatro, tiempos reales de cocina y el punto exacto donde la mayoría se equivoca.</p>
+      </li>
+      <li class="item">
+        <figure><img src="../img/truco.jpg" alt="Nidos de tagliatelle fresco recién cortados" loading="lazy"></figure>
+        <span class="n">02</span><h3>El truco</h3>
+        <p>Un gesto concreto —el agua de la cocción, el orden del sofrito— explicado en tres líneas.</p>
+      </li>
+      <li class="item">
+        <figure><img src="../img/producto.jpg" alt="Manos amasando junto a un cuenco de huevos y harina" loading="lazy"></figure>
+        <span class="n">03</span><h3>El producto</h3>
+        <p>Qué está de temporada, cómo elegirlo en el mercado y cuánto debería costarte.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <div class="caja pie__fila">
+    <p>Diseñado por <b>Luis Miguel Pascua Portilla</b> · Tarea DI_02 · 2º DAM</p>
+    <p>Fotografías: Mae&nbsp;Mu, Jorge&nbsp;Zapata, Anima&nbsp;Visual y Margaret&nbsp;Jaszowska en Unsplash</p>
+  </div>
+</footer>
+
+<div class="velo" id="velo" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt" id="modal">
+    <button class="mx" id="x" aria-label="Cerrar">&times;</button>
+    <div class="mi" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 26 26"><path d="M6.5 13.5 10.8 17.8 19.5 8.2" fill="none" stroke="#3C6E2B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h2 id="mt">Ya estás dentro</h2>
+    <p>El próximo domingo por la mañana recibes el primero en <b id="modal-email">tu correo</b>.</p>
+    <button class="mok" id="ok">Perfecto</button>
+  </div>
+</div>
+
+<script src="assets/landing.js"></script>
+</body>
+</html>

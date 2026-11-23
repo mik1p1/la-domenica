@@ -1,0 +1,276 @@
+/* =====================================================================
+   LA DOMENICA — styles.css
+   Guia de estilo (Unidad 01, punto 5): paleta, tipografia, botones,
+   componentes. Una sola familia tipografica (consistencia, Unidad 02 2.1).
+   ===================================================================== */
+
+/* ---------- 1. TOKENS ---------- */
+:root{
+  /* neutros: blanco y gris sin tinte amarillo */
+  --fondo:#FFFFFF;
+  --fondo-2:#F3F3F2;
+  --linea:#E2E2E0;
+  --negro:#121212;          /* barra de navegacion */
+  --negro-2:#1C1C1C;        /* pie */
+  --tinta:#1A1A1A;          /* texto principal */
+  --tinta-2:#4A4A4A;        /* texto secundario: 8,9:1 sobre blanco */
+  --gris:#5E5E5E;           /* texto legal: 6,5:1 sobre blanco */
+  --claro:#FFFFFF;          /* texto sobre foto u oscuro */
+
+  /* accion: un unico color, el verde (Unidad 02, punto 5.2) */
+  --verde:#4C9A2A;          /* reposo — texto oscuro 6,1:1 */
+  --verde-fuerte:#2E7D1A;   /* hover — texto blanco 5,2:1 */
+  --verde-borde:#1E5410;    /* canto inferior del boton (relieve) */
+  --verde-texto:#0F1A0A;
+  --verde-etiqueta:#2F6B1A; /* texto verde sobre blanco: 6,3:1 */
+
+  /* error: rojo solo para alertas (Unidad 01, punto 4.2) */
+  --alerta:#A3231B;
+  --alerta-claro:#FFB4A9;
+
+  /* textura de grano para los fondos lisos (SVG, sin peticiones extra) */
+  --textura:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  --fuente:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --radio:6px;
+  --ancho:82rem;
+  --barra:4.5rem;
+}
+
+/* La raiz crece con la pantalla: en monitores 2K todo escala en proporcion */
+html{font-size:clamp(16px, .55vw + 9px, 22px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--fuente);font-size:1rem;line-height:1.6;color:var(--tinta);
+  background:var(--fondo);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+button,input{font:inherit;color:inherit}
+a{color:inherit}
+.caja{width:100%;max-width:var(--ancho);margin-inline:auto;padding-inline:clamp(1.25rem,4vw,4rem)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+:focus-visible{outline:3px solid var(--verde);outline-offset:3px}
+
+/* ---------- 2. JERARQUIA TIPOGRAFICA (Unidad 02, punto 5.5) ---------- */
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.08}
+h1{font-size:clamp(2.5rem,3.9vw,5rem)}                      /* nivel 1 */
+h2{font-size:clamp(1.4rem,1.7vw,1.95rem);letter-spacing:-.02em} /* nivel 2 */
+h3{font-size:1.1rem;font-weight:700;letter-spacing:-.01em}  /* nivel 3 */
+.sub{font-size:clamp(1rem,1vw,1.15rem);font-weight:500;line-height:1.55}
+
+/* ---------- 3. BOTONES: affordance (Unidad 02, punto 4.3) ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  height:3.5rem;padding:0 1.9rem;border-radius:var(--radio);
+  font-weight:700;font-size:1.05rem;text-decoration:none;white-space:nowrap;
+  cursor:pointer;border:none;
+  transition:background-color .15s, color .15s, transform .12s, box-shadow .12s;
+}
+.btn svg{width:1.1em;height:1.1em;flex:none;transition:transform .15s}
+.btn--cta{background:var(--verde);color:var(--verde-texto);box-shadow:0 3px 0 var(--verde-borde)}
+.btn--cta:hover:not(:disabled){
+  background:var(--verde-fuerte);color:var(--claro);
+  transform:translateY(-2px);box-shadow:0 5px 0 var(--verde-borde);
+}
+.btn--cta:hover:not(:disabled) svg{transform:translateX(3px)}
+.btn--cta:active:not(:disabled){transform:translateY(3px);box-shadow:0 0 0 var(--verde-borde)}
+.btn--cta:disabled{background:#9DA595;color:#23271F;box-shadow:none;cursor:progress;transform:none}
+.btn--cta:focus-visible{outline:3px solid var(--claro);outline-offset:2px;box-shadow:0 0 0 7px var(--tinta)}
+/* el mismo boton, tamano menor, en la barra (mismo verbo = mismo color) */
+.btn--nav{height:2.75rem;padding:0 1.25rem;font-size:.92rem;box-shadow:0 2px 0 var(--verde-borde)}
+.btn--nav:hover:not(:disabled){box-shadow:0 3px 0 var(--verde-borde);transform:translateY(-1px)}
+/* boton secundario sobre fondo claro */
+.btn--borde{height:3rem;padding:0 1.4rem;font-size:.95rem;background:var(--fondo);color:var(--tinta);
+  box-shadow:inset 0 0 0 2px var(--tinta)}
+.btn--borde:hover{background:var(--tinta);color:var(--claro)}
+
+/* ---------- 4. BARRA DE NAVEGACION ---------- */
+.barra{position:sticky;top:0;z-index:40;background:var(--negro);color:var(--claro)}
+.barra__fila{height:var(--barra);display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.logo{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:inherit}
+.logo svg{width:2.1rem;height:2.1rem;flex:none}
+.logo__txt{font-weight:800;font-size:1.2rem;letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.nav{display:flex;align-items:center;gap:2.25rem}
+.menu{display:flex;gap:2rem;list-style:none;margin:0;padding:0}
+.menu a{position:relative;display:block;text-decoration:none;font-weight:600;font-size:.95rem;
+  color:rgba(255,255,255,.78);padding:.5rem 0;transition:color .15s}
+/* subrayado que crece desde la izquierda al pasar el raton */
+.menu a::after{content:"";position:absolute;left:0;right:0;bottom:.1rem;height:2px;border-radius:2px;
+  background:var(--verde);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+.menu a:hover,.menu a:focus-visible{color:var(--claro)}
+.menu a:hover::after,.menu a:focus-visible::after{transform:scaleX(1)}
+/* pagina actual: subrayado fijo en blanco (reconocimiento > recuerdo) */
+.menu a[aria-current="page"]{color:var(--claro)}
+.menu a[aria-current="page"]::after{transform:scaleX(1);background:var(--claro)}
+@media (prefers-reduced-motion:reduce){.menu a::after{transition:none}}
+
+.hamburguesa{display:none;background:none;border:2px solid rgba(255,255,255,.55);border-radius:8px;
+  width:2.9rem;height:2.9rem;color:var(--claro);cursor:pointer;place-items:center}
+.hamburguesa svg{width:1.4rem;height:1.4rem}
+@media (max-width:900px){
+  .hamburguesa{display:grid}
+  .nav{display:none;position:absolute;left:0;right:0;top:var(--barra);background:var(--negro);
+    flex-direction:column;align-items:stretch;gap:0;padding:.5rem clamp(1.25rem,4vw,4rem) 1.25rem;
+    box-shadow:0 12px 24px rgba(0,0,0,.3)}
+  .nav.abierta{display:flex}
+  .menu{flex-direction:column;gap:0}
+  .menu a{padding:.85rem 0;font-size:1.05rem}
+  .menu a::after{bottom:.45rem;right:auto;width:3rem}
+  .nav .btn--nav{margin-top:.75rem;height:3.25rem}
+}
+
+/* ---------- 5. HERO DE LA LANDING (variante F: foto + columna) ----------
+   Patron Z: logo (1) -> boton de la barra (2) -> diagonal por la foto
+   hasta abajo-izquierda (3) -> CTA abajo-derecha (4)                    */
+.hero{display:grid;min-height:calc(100svh - var(--barra))}
+.hero__foto{min-height:42vh;
+  background:linear-gradient(0deg,rgba(12,12,12,.18),rgba(12,12,12,.04)),
+             url("img/fondo-harina-2560.jpg") center/cover no-repeat, var(--negro)}
+/* columna blanca con grano suave para que no se vea plana */
+.hero__col{display:flex;background:var(--fondo) var(--textura)}
+.hero__col-in{display:flex;flex-direction:column;justify-content:center;gap:2.25rem;width:100%;
+  max-width:44rem;padding:clamp(2.5rem,6vw,5rem) clamp(1.25rem,4vw,4rem)}
+.hero h1{margin-bottom:1rem}
+.hero .sub{margin:0;color:var(--tinta-2);max-width:42ch}
+@media (min-width:1000px){
+  .hero{grid-template-columns:1.1fr 1fr}
+}
+/* movil: el formulario tiene que verse sin hacer scroll (diseno centrado en la tarea) */
+@media (max-width:999px){
+  .hero__foto{min-height:22vh}
+  .hero__col-in{gap:1.5rem;padding-block:1.75rem 2.5rem}
+  .resaltos{order:3}
+}
+
+/* resaltos: tres datos utiles, cada uno con icono + titulo + aclaracion */
+.resaltos{display:grid;gap:.6rem;list-style:none;margin:0;padding:0;max-width:30rem}
+.resaltos li{display:flex;align-items:center;gap:.9rem;padding:.8rem 1rem;border-radius:var(--radio);
+  background:var(--fondo-2);box-shadow:inset 0 0 0 1px var(--linea)}
+.resaltos li div{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .6rem}
+.resaltos__icono{width:2.4rem;height:2.4rem;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:var(--verde);color:var(--verde-texto)}
+.resaltos__icono svg{width:1.15rem;height:1.15rem}
+.resaltos strong{display:block;font-size:.95rem;font-weight:700;line-height:1.25}
+.resaltos li div span{display:block;font-size:.85rem;color:var(--tinta-2);line-height:1.35}
+
+/* ---------- 6. FORMULARIO ---------- */
+.form{margin:0}
+.form__fila{display:grid;gap:.75rem}
+@media (min-width:600px){.form__fila{grid-template-columns:1fr auto}}
+.campo{width:100%;height:3.5rem;padding:0 1.15rem;background:var(--fondo);color:var(--tinta);
+  border:2px solid var(--tinta);border-radius:var(--radio);font-size:1.02rem;
+  transition:border-color .15s, box-shadow .15s}
+.campo::placeholder{color:#7A7A7A}
+.campo:focus-visible{outline:none;border-color:var(--verde);box-shadow:0 0 0 4px rgba(76,154,42,.4)}
+.campo[aria-invalid="true"]{border-color:var(--alerta);box-shadow:0 0 0 3px rgba(163,35,27,.3)}
+.aviso{display:flex;align-items:flex-start;gap:.45rem;font-size:.92rem;font-weight:600;margin:.7rem 0 0;min-height:1.4em}
+.aviso:empty{margin:0}
+.aviso--mal{color:var(--alerta)}
+.aviso svg{flex:none;margin-top:.2em}
+.legal{font-size:.82rem;color:var(--gris);margin:.9rem 0 0;max-width:56ch}
+.oscuro .aviso--mal{color:var(--alerta-claro)}
+.oscuro .legal{color:rgba(255,255,255,.76)}
+.oscuro .campo{border-color:var(--fondo)}
+
+/* ---------- 7. SECCIONES DE LAS PAGINAS INTERIORES ---------- */
+.seccion{padding-block:clamp(3.5rem,6vw,6rem)}
+.seccion--gris{background:var(--fondo-2) var(--textura)}
+.cab{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1rem 2rem;margin-bottom:2.25rem}
+.cab p{margin:0;color:var(--tinta-2);max-width:46ch}
+.etiqueta{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--verde-etiqueta);margin-bottom:.35rem}
+
+/* cabecera con foto de las paginas interiores */
+.cabecera-pag{color:var(--claro);padding-block:clamp(4rem,9vw,7.5rem) clamp(2.5rem,5vw,3.75rem);
+  background:linear-gradient(90deg,rgba(12,12,12,.78) 0%,rgba(12,12,12,.42) 55%,rgba(12,12,12,.1) 100%),
+             var(--foto-cab) center/cover no-repeat, var(--negro)}
+.cabecera-pag .sub{margin:.9rem 0 0;max-width:46ch;color:rgba(255,255,255,.9)}
+.migas{font-size:.86rem;margin:0 0 .9rem;color:rgba(255,255,255,.82)}
+.migas a{color:inherit}
+
+/* bloque de texto + imagen */
+.dos-col{display:grid;gap:2.5rem;align-items:center}
+@media (min-width:900px){.dos-col{grid-template-columns:1.1fr 1fr;gap:4.5rem}}
+.dos-col img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radio)}
+.texto h2{margin-bottom:1rem}
+.texto p{margin:0 0 1rem;color:var(--tinta-2);max-width:60ch}
+
+/* tres apartados de la newsletter */
+.trio{display:grid;gap:2rem;list-style:none;margin:0;padding:0}
+@media (min-width:780px){.trio{grid-template-columns:repeat(3,1fr)}}
+.trio li{background:var(--fondo);border-radius:var(--radio);overflow:hidden;box-shadow:0 0 0 1px var(--linea)}
+.trio img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.trio__txt{padding:1.2rem 1.35rem 1.4rem}
+.trio h3{margin-bottom:.4rem}
+.trio p{margin:0;color:var(--tinta-2);font-size:.95rem}
+
+/* banda de cierre con CTA, enlaza con la landing */
+.cierre{background:var(--negro);color:var(--claro);padding-block:clamp(3rem,5vw,4.5rem)}
+.cierre__fila{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem 3rem}
+.cierre p{margin:.4rem 0 0;color:rgba(255,255,255,.8)}
+
+/* ---------- 8. RECETAS ---------- */
+.filtros{display:flex;flex-wrap:wrap;gap:.6rem;margin:0 0 1.25rem;padding:0;list-style:none}
+.filtro{height:2.75rem;padding:0 1.15rem;border-radius:999px;border:2px solid var(--tinta);background:var(--fondo);
+  font-weight:600;font-size:.92rem;cursor:pointer;transition:background-color .15s,color .15s}
+.filtro:hover{background:#E6E6E4}
+.filtro[aria-pressed="true"]{background:var(--tinta);color:var(--claro)}
+.contador{margin:0 0 1.5rem;color:var(--gris);font-size:.92rem}
+.recetas{display:grid;gap:2rem 1.75rem;list-style:none;margin:0;padding:0}
+@media (min-width:640px){.recetas{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.recetas{grid-template-columns:repeat(3,1fr)}}
+.receta{background:var(--fondo);border-radius:var(--radio);overflow:hidden;box-shadow:0 0 0 1px var(--linea)}
+.receta[hidden]{display:none}
+.receta img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--fondo-2)}
+.receta__txt{padding:1.2rem 1.35rem 1.4rem}
+.receta h3{margin-bottom:.45rem}
+.receta p{margin:0 0 .9rem;color:var(--tinta-2);font-size:.95rem}
+.datos{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin:0;padding:0;list-style:none;font-size:.86rem;font-weight:600;color:var(--tinta-2)}
+.datos li{display:flex;align-items:center;gap:.35rem}
+.datos svg{width:1rem;height:1rem;flex:none}
+
+/* ---------- 9. CONTACTO ---------- */
+.contacto{display:grid;gap:2.5rem}
+@media (min-width:900px){.contacto{grid-template-columns:1fr 1.3fr;gap:4.5rem}}
+.ficha{background:var(--fondo);border-radius:var(--radio);padding:1.75rem;box-shadow:0 0 0 1px var(--linea)}
+.ficha dl{margin:0;display:grid;gap:1.1rem}
+.ficha dt{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gris)}
+.ficha dd{margin:.2rem 0 0;font-weight:600}
+.ficha a{color:var(--verde-etiqueta)}
+.preguntas{display:grid;gap:.75rem}
+.preguntas details{background:var(--fondo);border-radius:var(--radio);box-shadow:0 0 0 1px var(--linea)}
+.preguntas summary{cursor:pointer;padding:1.05rem 1.25rem;font-weight:700;list-style-position:inside}
+.preguntas summary:hover{background:#FAFAF9}
+.preguntas p{margin:0;padding:0 1.25rem 1.15rem;color:var(--tinta-2)}
+
+/* ---------- 10. PIE ---------- */
+.pie{background:var(--negro-2);color:rgba(255,255,255,.76);font-size:.92rem;padding-block:3.25rem 2rem}
+.pie__rejilla{display:grid;gap:2.25rem}
+@media (min-width:780px){.pie__rejilla{grid-template-columns:1.5fr 1fr 1fr}}
+.pie h2{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--claro);margin:0 0 1rem}
+.pie p{margin:0 0 .6rem;max-width:40ch}
+.pie ul{list-style:none;margin:0;padding:0}
+.pie li{margin-bottom:.55rem}
+.pie a{text-decoration:none;color:rgba(255,255,255,.86)}
+.pie a:hover{color:var(--claro);text-decoration:underline;text-underline-offset:.25em}
+.pie .logo{margin-bottom:1rem;color:var(--claro)}
+.pie__base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem 2rem;
+  margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.14);font-size:.82rem}
+.pie__base p{margin:0;max-width:none}
+.pie__base strong{color:var(--claro)}
+
+/* ---------- 11. MODAL ---------- */
+.velo{position:fixed;inset:0;z-index:80;background:rgba(10,10,10,.72);display:grid;place-items:center;padding:1.25rem}
+.velo[hidden]{display:none}
+.modal{background:var(--fondo);width:100%;max-width:28rem;padding:2.5rem 2.25rem 2rem;border-radius:12px;
+  text-align:center;position:relative;animation:entra .25s ease-out}
+@keyframes entra{from{opacity:0;transform:translateY(12px)}}
+@media (prefers-reduced-motion:reduce){.modal{animation:none}}
+.modal__x{position:absolute;top:.75rem;right:.75rem;width:2.5rem;height:2.5rem;border:none;background:none;
+  border-radius:8px;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--gris)}
+.modal__x:hover{background:var(--fondo-2);color:var(--tinta)}
+.modal__icono{width:3.5rem;height:3.5rem;border-radius:50%;background:#E3F0DA;display:grid;place-items:center;margin:0 auto 1.1rem}
+.modal h2{margin-bottom:.6rem}
+.modal p{margin:0;color:var(--tinta-2)}
+.modal .btn{width:100%;margin-top:1.75rem}
+
+/* ---------- 12. COMPROBACION DEL PATRON Z (solo con ?z en la URL) ---------- */
+.capa-z{position:absolute;left:0;top:0;pointer-events:none;z-index:70}

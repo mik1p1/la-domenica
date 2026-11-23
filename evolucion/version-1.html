@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Domenica — Newsletter de cocina italiana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   GUIA DE ESTILO  (Unidad 01, punto 5)
+   ========================================================= */
+:root{
+  /* --- color: un unico acento, el verde --- */
+  --noche:    #16120F;   /* barra de navegacion y pie */
+  --noche-2:  #241D18;
+  --crema:    #F7F2E8;   /* panel de contenido */
+  --crema-2:  #EFE8DA;
+  --tinta:    #221C18;   /* texto principal */
+  --gris:     #6B6058;   /* texto legal — 5.13:1 sobre crema, AA */
+  --oliva:    #3C6E2B;   /* ACENTO UNICO: el CTA — 6.08:1 con blanco, AA */
+  --oliva-h:  #2E5620;
+  --alerta:   #A3231B;   /* solo errores */
+  --linea:    rgba(34,28,24,.14);
+
+  /* --- tipografia: 2 familias, ni una mas --- */
+  --display: "Bodoni Moda", Georgia, serif;
+  --texto:   "Work Sans", system-ui, sans-serif;
+
+  --barra-h: 68px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+img{display:block;max-width:100%}
+button,input{font:inherit;color:inherit}
+
+/* =========================================================
+   FONDO DEL BODY: la fotografia (Gestalt — figura/fondo)
+   ========================================================= */
+body{
+  font-family:var(--texto);
+  font-size:16px;
+  line-height:1.6;
+  color:var(--tinta);
+  background:
+    linear-gradient(rgba(10,8,6,.55), rgba(10,8,6,.55)),
+    url("../img/fondo-harina.jpg") center/cover fixed no-repeat,
+    #16120F;
+  -webkit-font-smoothing:antialiased;
+}
+
+.contenedor{
+  width:100%;
+  max-width:1240px;
+  margin-inline:auto;
+  padding-inline:clamp(20px,4vw,48px);
+}
+
+/* =========================================================
+   1. BARRA  — banda oscura solida, separada del resto
+   ========================================================= */
+.barra{
+  position:sticky;
+  top:0;
+  z-index:30;
+  height:var(--barra-h);
+  background:var(--noche);
+  border-bottom:1px solid rgba(247,242,232,.12);
+}
+.barra__fila{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;   /* Z: logo izquierda ←→ menu derecha */
+  gap:20px;
+}
+/* --- Z punto 1 --- */
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo__icono{flex:none}
+.logo__texto{
+  font-family:var(--display);
+  font-size:1.35rem;
+  font-weight:700;
+  letter-spacing:.015em;
+  color:#F7F2E8;
+  line-height:1;
+}
+.logo__texto i{font-style:italic;font-weight:400}
+/* --- Z punto 2 --- */
+.menu{display:none}
+@media (min-width:800px){
+  .menu{display:flex;gap:34px;list-style:none;margin:0;padding:0}
+  .menu a{
+    color:rgba(247,242,232,.74);
+    text-decoration:none;
+    font-size:.86rem;
+    font-weight:500;
+    letter-spacing:.02em;
+    padding:4px 0;
+    border-bottom:1.5px solid transparent;
+    transition:color .18s,border-color .18s;
+  }
+  .menu a:hover,.menu a:focus-visible{color:#F7F2E8;border-bottom-color:var(--oliva)}
+}
+
+/* =========================================================
+   2. HERO  — panel crema a la izquierda, foto a la derecha
+   ========================================================= */
+.hero{
+  display:grid;
+  min-height:calc(100svh - var(--barra-h));
+}
+@media (min-width:900px){
+  .hero{grid-template-columns:minmax(0,54fr) minmax(0,46fr)}
+}
+.panel{
+  background:var(--crema);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(36px,6vw,80px) clamp(24px,5vw,72px);
+}
+@media (min-width:900px){
+  /* el panel se come un poco de la foto: capas, no mosaico */
+  .panel{box-shadow:28px 0 60px rgba(10,8,6,.35)}
+}
+.panel__dentro{max-width:520px;margin-inline:auto;width:100%}
+
+/* --- jerarquia textual: 1 titulo, 2 subtitulo, 3 cuerpo --- */
+h1{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(2.6rem,5.6vw,4.3rem);
+  line-height:.98;
+  letter-spacing:-.015em;
+  margin:0 0 18px;
+  text-wrap:balance;
+}
+h1 i{font-weight:400;font-style:italic}
+.sub{
+  font-size:clamp(1.05rem,1.5vw,1.22rem);
+  color:#43372F;
+  margin:0 0 32px;
+  max-width:34ch;
+}
+
+/* --- formulario: proximidad (campo + boton juntos) --- */
+.form{margin:0}
+.form__fila{display:grid;gap:12px}
+@media (min-width:560px){.form__fila{grid-template-columns:1fr auto}}
+.oculto{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+.campo{
+  width:100%;
+  height:56px;
+  padding:0 18px;
+  background:#fff;
+  border:2px solid var(--tinta);        /* requisito: borde oscuro */
+  border-radius:4px;
+  transition:border-color .16s,box-shadow .16s;
+}
+.campo::placeholder{color:#9A8D82}
+.campo:focus-visible{
+  outline:none;
+  border-color:var(--oliva);
+  box-shadow:0 0 0 4px rgba(60,110,43,.22);
+}
+.campo[aria-invalid="true"]{border-color:var(--alerta)}
+
+/* --- Z punto 4: el CTA, el unico elemento de color --- */
+.cta{
+  height:56px;
+  padding:0 34px;
+  background:var(--oliva);
+  color:#fff;
+  font-weight:600;
+  font-size:1.02rem;
+  letter-spacing:.01em;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:background .18s,transform .12s,box-shadow .18s;
+  box-shadow:0 1px 0 rgba(0,0,0,.18);
+}
+.cta:hover:not(:disabled){
+  background:var(--oliva-h);
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(60,110,43,.34);
+}
+.cta:active:not(:disabled){transform:translateY(0);box-shadow:none}
+.cta:focus-visible{outline:3px solid var(--tinta);outline-offset:3px}
+.cta:disabled{background:#8E8C7F;cursor:progress;transform:none;box-shadow:none}
+
+.aviso{
+  display:flex;align-items:flex-start;gap:7px;
+  font-size:.875rem;margin:10px 0 0;min-height:1.3em;
+}
+.aviso:empty{margin:0}
+.aviso--mal{color:var(--alerta)}
+.aviso--bien{color:var(--oliva)}
+.aviso svg{flex:none;margin-top:3px}
+
+.legal{font-size:.78rem;color:var(--gris);margin:14px 0 0}
+
+/* --- lado derecho: solo la foto del body --- */
+.hero__foto{min-height:38vh}
+@media (min-width:900px){.hero__foto{min-height:0}}
+
+/* =========================================================
+   3. QUE RECIBES — banda crema, corta el fondo limpiamente
+   ========================================================= */
+.recibes{
+  background:var(--crema-2);
+  padding-block:clamp(56px,7vw,88px);
+  position:relative;
+  z-index:2;
+}
+.recibes__cabeza{
+  display:flex;flex-wrap:wrap;align-items:baseline;
+  justify-content:space-between;gap:10px 24px;
+  padding-bottom:18px;margin-bottom:34px;
+  border-bottom:1px solid var(--linea);
+}
+.recibes h2{
+  font-family:var(--display);
+  font-size:clamp(1.7rem,3vw,2.4rem);
+  font-weight:700;margin:0;
+}
+.recibes__nota{margin:0;color:var(--gris);font-size:.9rem}
+
+.lista{display:grid;gap:26px;list-style:none;margin:0;padding:0}
+@media (min-width:760px){.lista{grid-template-columns:repeat(3,1fr)}}
+.item figure{margin:0 0 16px;overflow:hidden;border-radius:4px}
+.item img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .5s ease}
+.item:hover img{transform:scale(1.04)}
+.item__orden{
+  font-family:var(--display);font-size:.86rem;font-weight:700;
+  color:var(--oliva);letter-spacing:.14em;
+}
+.item h3{font-family:var(--display);font-size:1.3rem;font-weight:700;margin:3px 0 6px}
+.item p{margin:0;font-size:.93rem;color:#4C4038}
+
+/* =========================================================
+   4. PIE — banda oscura, cierra simetrico con la barra
+   ========================================================= */
+.pie{
+  position:relative;z-index:2;
+  background:var(--noche);
+  color:rgba(247,242,232,.6);
+  font-size:.8rem;
+  padding-block:30px 34px;
+}
+.pie__fila{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between}
+.pie p{margin:0}
+.pie b{color:#F7F2E8;font-weight:600}
+
+/* =========================================================
+   5. MODAL
+   ========================================================= */
+.velo{position:fixed;inset:0;z-index:60;background:rgba(10,8,6,.72);display:grid;place-items:center;padding:20px}
+.velo[hidden]{display:none}
+.modal{
+  background:var(--crema);width:100%;max-width:420px;
+  padding:40px 34px 30px;text-align:center;position:relative;
+  border-radius:4px;
+  animation:entra .3s cubic-bezier(.16,.84,.26,1);
+}
+@keyframes entra{from{opacity:0;transform:translateY(16px)}}
+@media (prefers-reduced-motion:reduce){.modal{animation:none}}
+.modal__x{
+  position:absolute;top:10px;right:12px;width:36px;height:36px;
+  background:none;border:none;font-size:1.6rem;line-height:1;
+  color:var(--gris);cursor:pointer;border-radius:4px;
+}
+.modal__x:hover{background:var(--crema-2);color:var(--tinta)}
+.modal__x:focus-visible{outline:3px solid var(--oliva);outline-offset:1px}
+.modal__marca{width:54px;height:54px;border-radius:50%;background:#E2EBDC;display:grid;place-items:center;margin:0 auto 18px}
+.modal h2{font-family:var(--display);font-size:1.75rem;font-weight:700;margin:0 0 10px}
+.modal p{margin:0;color:#4C4038;font-size:.95rem}
+.modal__ok{
+  width:100%;height:50px;margin-top:26px;
+  background:none;border:2px solid var(--tinta);border-radius:4px;
+  font-weight:600;cursor:pointer;transition:background .18s,color .18s;
+}
+.modal__ok:hover{background:var(--tinta);color:var(--crema)}
+.modal__ok:focus-visible{outline:3px solid var(--oliva);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<!-- ============ BARRA (Z: 1 izquierda · 2 derecha) ============ -->
+<header class="barra">
+  <div class="contenedor barra__fila">
+    <a class="logo" href="#">
+      <svg class="logo__icono" width="22" height="26" viewBox="0 0 22 26" aria-hidden="true">
+        <path d="M11 25V11" stroke="#8FBF6E" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M11 14S6 13.6 4.6 10.2C3.2 6.8 5.3 4.6 5.3 4.6S11 6.6 11 14Z" fill="#6FA34E"/>
+        <path d="M11 17s4.7-1 6-4.4c1.3-3.4-.7-5.4-.7-5.4S11 9.2 11 17Z" fill="#4E8135"/>
+      </svg>
+      <span class="logo__texto">La <i>Domenica</i></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <ul class="menu">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#recibes">Recetas</a></li>
+        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero">
+
+  <!-- Z: 3 abajo-izquierda -->
+  <div class="panel">
+    <div class="panel__dentro">
+      <h1>Únete a nuestra <i>comunidad</i></h1>
+      <p class="sub">Recibe tips semanales de cocina italiana: lo que se hace en casa un domingo, no lo que sale en los restaurantes.</p>
+
+      <form class="form" id="form" novalidate>
+        <div class="form__fila">
+          <div>
+            <label class="oculto" for="email">Tu correo electrónico</label>
+            <input class="campo" id="email" name="email" type="email"
+                   placeholder="tunombre@correo.com" autocomplete="email"
+                   required aria-describedby="legal">
+          </div>
+          <!-- Z: 4, el final del recorrido -->
+          <button class="cta" type="submit" id="boton">Suscribirse</button>
+        </div>
+
+        <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+
+        <p class="legal" id="legal">
+          Un email cada domingo. Te das de baja en un clic y no cedemos tus datos a nadie.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- lado derecho: se ve la fotografia del body -->
+  <div class="hero__foto" aria-hidden="true"></div>
+</section>
+
+<!-- ============ QUE RECIBES ============ -->
+<section class="recibes" id="recibes">
+  <div class="contenedor">
+    <div class="recibes__cabeza">
+      <h2>Qué llega cada domingo</h2>
+      <p class="recibes__nota">Tres cosas, un correo, siete minutos de lectura.</p>
+    </div>
+
+    <ul class="lista">
+      <li class="item">
+        <figure><img src="../img/receta.jpg" alt="Manos pasando una lámina de masa por la máquina de pasta" loading="lazy"></figure>
+        <span class="item__orden">01</span>
+        <h3>La receta</h3>
+        <p>Cantidades para cuatro, tiempos reales de cocina y el punto exacto en el que la mayoría se equivoca.</p>
+      </li>
+      <li class="item">
+        <figure><img src="../img/truco.jpg" alt="Nidos de tagliatelle fresco recién cortados sobre papel" loading="lazy"></figure>
+        <span class="item__orden">02</span>
+        <h3>El truco</h3>
+        <p>Un gesto concreto —el agua de la cocción, el orden del sofrito— explicado en tres líneas.</p>
+      </li>
+      <li class="item">
+        <figure><img src="../img/producto.jpg" alt="Manos amasando pasta junto a un cuenco de huevos y harina" loading="lazy"></figure>
+        <span class="item__orden">03</span>
+        <h3>El producto</h3>
+        <p>Qué está de temporada esta semana, cómo elegirlo en el mercado y cuánto debería costarte.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<!-- ============ PIE ============ -->
+<footer class="pie">
+  <div class="contenedor pie__fila">
+    <p>Diseñado por <b>Luis Miguel Pascua Portilla</b> · Tarea DI_02 · 2º DAM</p>
+    <p>Fotografías: Mae&nbsp;Mu, Jorge&nbsp;Zapata, Anima&nbsp;Visual y Margaret&nbsp;Jaszowska en Unsplash</p>
+  </div>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div class="velo" id="velo" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt" id="modal">
+    <button class="modal__x" id="x" aria-label="Cerrar">&times;</button>
+    <div class="modal__marca" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 26 26">
+        <path d="M6.5 13.5L10.8 17.8L19.5 8.2" fill="none" stroke="#3C6E2B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2 id="mt">Ya estás dentro</h2>
+    <p>El próximo domingo por la mañana recibes el primero en <b id="modal-email">tu correo</b>.</p>
+    <button class="modal__ok" id="ok">Perfecto</button>
+  </div>
+</div>
+
+<script>
+const form  = document.getElementById('form');
+const email = document.getElementById('email');
+const boton = document.getElementById('boton');
+const aviso = document.getElementById('aviso');
+const velo  = document.getElementById('velo');
+const modal = document.getElementById('modal');
+
+const ICONO = '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">'
+ + '<path d="M8 1.6 15 14H1L8 1.6Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>'
+ + '<path d="M8 6.2v3.1M8 11.4h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
+
+function revisar(v){
+  v = v.trim();
+  if (v === '')               return 'Escribe tu email para suscribirte.';
+  if (/\s/.test(v))           return 'El email no puede llevar espacios.';
+  if (!v.includes('@'))       return 'Falta la @ en el email.';
+  const [antes, despues] = v.split('@');
+  if (!antes)                 return 'Falta el nombre antes de la @.';
+  if (!despues.includes('.')) return 'Falta el punto del dominio, por ejemplo .com';
+  if (despues.split('.').pop().length < 2) return 'Revisa lo que va después del último punto.';
+  return null;
+}
+function mal(t){
+  aviso.className = 'aviso aviso--mal';
+  aviso.innerHTML = ICONO + '<span>' + t + '</span>';
+  email.setAttribute('aria-invalid','true');
+}
+function limpio(){
+  aviso.className = 'aviso';
+  aviso.textContent = '';
+  email.removeAttribute('aria-invalid');
+}
+
+email.addEventListener('input', limpio);
+email.addEventListener('blur', () => {
+  if (!email.value.trim()) return;
+  const f = revisar(email.value);
+  if (f) mal(f);
+});
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const f = revisar(email.value);
+  if (f){ mal(f); email.focus(); return; }
+
+  limpio();
+  boton.disabled = true;
+  boton.textContent = 'Enviando…';
+  aviso.className = 'aviso aviso--bien';
+  aviso.textContent = 'Comprobando tu email…';
+
+  setTimeout(() => {
+    boton.disabled = false;
+    boton.textContent = 'Suscribirse';
+    limpio();
+    abrir(email.value.trim());
+    form.reset();
+  }, 1100);
+});
+
+let foco = null;
+function abrir(v){
+  document.getElementById('modal-email').textContent = v;
+  foco = document.activeElement;
+  velo.hidden = false;
+  document.body.style.overflow = 'hidden';
+  document.getElementById('ok').focus();
+}
+function cerrar(){
+  velo.hidden = true;
+  document.body.style.overflow = '';
+  if (foco) foco.focus();
+}
+document.getElementById('ok').addEventListener('click', cerrar);
+document.getElementById('x').addEventListener('click', cerrar);
+velo.addEventListener('click', e => { if (e.target === velo) cerrar(); });
+
+document.addEventListener('keydown', e => {
+  if (velo.hidden) return;
+  if (e.key === 'Escape'){ cerrar(); return; }
+  if (e.key === 'Tab'){
+    const b = modal.querySelectorAll('button');
+    const pri = b[0], ult = b[b.length - 1];
+    if (e.shiftKey && document.activeElement === pri){ e.preventDefault(); ult.focus(); }
+    else if (!e.shiftKey && document.activeElement === ult){ e.preventDefault(); pri.focus(); }
+  }
+});
+</script>
+</body>
+</html>
